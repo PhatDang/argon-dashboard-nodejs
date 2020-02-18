@@ -15,6 +15,7 @@
     "knex": "knex --knexfile ./db/knexfile.js --debug"
   },
   "dependencies": {
+    "@types/dotenv": "^8.2.0",
     "async-middleware": "^1.2.1",
     "bcrypt": "^3.0.7",
     "bluebird": "^3.7.2",
