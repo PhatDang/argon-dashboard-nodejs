@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt');
-const knex = require('../../db');
+import { hash } from 'bcrypt';
+import knex from '../../db';
 
 async function createUser({ name, username: email, password }) {
-  const hashedPass = await bcrypt.hash(password, 5);
+  const hashedPass = await hash(password, 5);
   const [user] = await knex('users')
     .insert({
       name,
@@ -16,6 +16,6 @@ async function createUser({ name, username: email, password }) {
   return user;
 }
 
-module.exports = {
+export default {
   createUser,
 };

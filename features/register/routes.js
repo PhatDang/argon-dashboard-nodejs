@@ -1,10 +1,10 @@
-const { wrap } = require('async-middleware');
+import { wrap } from 'async-middleware';
 
-const requestBodyValidation = require('./commands/verify-request-body');
-const createUser = require('./commands/create-user');
-const loadPage = require('./commands/load-page');
+import requestBodyValidation from './commands/verify-request-body';
+import createUser from './commands/create-user';
+import loadPage from './commands/load-page';
 
-module.exports = router => {
+export default router => {
   router.get('/register', wrap(loadPage));
 
   router.post('/register', wrap(requestBodyValidation), wrap(createUser));

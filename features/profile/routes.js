@@ -1,12 +1,18 @@
-const { wrap } = require('async-middleware');
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default-member */
+import { wrap } from 'async-middleware';
 
-const requestBodyValidation = require('./commands/verify-request-body');
-const updateUserInfo = require('./commands/update-user-info');
+import requestBodyValidation from './commands/verify-request-body';
+import updateUserInfo from './commands/update-user-info';
 
-const loadPage = require('./commands/load-page');
+import loadPage from './commands/load-page';
 
-module.exports = (router, middlewares = []) => {
-  router.get('/profile', middlewares.map(middleware => wrap(middleware)), wrap(loadPage));
+export default (router, middlewares = []) => {
+  router.get(
+    '/profile',
+    middlewares.map(middleware => wrap(middleware)),
+    wrap(loadPage)
+  );
 
   router.post('/update-profile-info', wrap(requestBodyValidation), wrap(updateUserInfo));
 

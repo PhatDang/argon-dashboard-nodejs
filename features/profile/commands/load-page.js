@@ -1,6 +1,7 @@
-const { getUser } = require('../repository');
+import default from '../repository';
+const { getUser } = default;
 
-const { FETCH_INFO_ERROR_MESSAGE } = require('../constants');
+import { FETCH_INFO_ERROR_MESSAGE } from '../constants';
 
 async function loadPage(req, res) {
   let userInfo;
@@ -15,4 +16,4 @@ async function loadPage(req, res) {
   res.render('pages/profile');
 }
 
-module.exports = loadPage;
+export default loadPage;

@@ -1,5 +1,6 @@
-const { updateUserInfo } = require('../repository');
-const { UPDATE_INFO_SUCCESS_MESSAGE, UPDATE_INFO_ERROR_MESSAGE } = require('../constants');
+import default from '../repository';
+const { updateUserInfo } = default;
+import { UPDATE_INFO_SUCCESS_MESSAGE, UPDATE_INFO_ERROR_MESSAGE } from '../constants';
 
 async function updateUser(req, res) {
   let user = {};
@@ -24,4 +25,4 @@ async function updateUser(req, res) {
   res.redirect('/profile');
 }
 
-module.exports = updateUser;
+export default updateUser;

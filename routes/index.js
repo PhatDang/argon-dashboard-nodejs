@@ -1,12 +1,12 @@
-const express = require('express');
+import { Router } from 'express';
 
-const router = express.Router();
+import mountRegisterRoutes from '../features/register/routes';
+import mountLoginRoutes from '../features/login/routes';
+import mountLogoutRoutes from '../features/logout/routes';
+import mountResetPasswordRoutes from '../features/reset-password/routes';
+import mountProfileRoutes from '../features/profile/routes';
 
-const mountRegisterRoutes = require('../features/register/routes');
-const mountLoginRoutes = require('../features/login/routes');
-const mountLogoutRoutes = require('../features/logout/routes');
-const mountResetPasswordRoutes = require('../features/reset-password/routes');
-const mountProfileRoutes = require('../features/profile/routes');
+const router = Router();
 
 function isAuthenticated(req, res, next) {
   if (req.user && req.isAuthenticated()) {
@@ -39,4 +39,4 @@ mountLogoutRoutes(router, [isAuthenticated]);
 mountResetPasswordRoutes(router);
 mountProfileRoutes(router, [isAuthenticated]);
 
-module.exports = router;
+export default router;

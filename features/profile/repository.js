@@ -1,4 +1,4 @@
-const knex = require('../../db');
+import knex from '../../db';
 
 async function getUser(id) {
   const [user] = await knex('users')
@@ -19,7 +19,7 @@ async function updateUserInfo({ name, username: email, id }) {
   return user;
 }
 
-module.exports = {
+export default {
   getUser,
   updateUserInfo,
 };

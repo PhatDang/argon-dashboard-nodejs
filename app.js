@@ -2,15 +2,15 @@ require('dotenv').config({
   path: `./env-files/${process.env.NODE_ENV || 'development'}.env`,
 });
 
-const express = require('express');
-const path = require('path');
-const expressLayouts = require('express-ejs-layouts');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
+import express, { json, urlencoded, static } from 'express';
+import { join } from 'path';
+import expressLayouts from 'express-ejs-layouts';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 const RedisStore = require('connect-redis')(session);
 
-const initAuthMiddleware = require('./features/login/init-auth-middleware');
-const indexRouter = require('./routes/index');
+import initAuthMiddleware from './features/login/init-auth-middleware';
+import indexRouter from './routes/index';
 
 const redisStoreConfig = {
   host: process.env.REDIS_HOST,
@@ -31,14 +31,14 @@ const staticFolder = process.env.NODE_ENV === 'development' ? 'public' : 'dist';
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(json());
+app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, staticFolder)));
+app.use(static(join(__dirname, staticFolder)));
 
 const { COOKIE_EXPIRATION_MS } = process.env;
 app.use(
@@ -75,4 +75,4 @@ app.use((req, res) => {
   res.status(404).render('pages/404');
 });
 
-module.exports = app;
+export default app;

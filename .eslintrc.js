@@ -7,6 +7,14 @@ module.exports = {
   },
   extends: ['airbnb/base', 'prettier'],
   plugins: ['prettier'],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parserOptions: {
+    ecmaVersion: 2019,
+    sourceType: 'module',
+  },
   rules: {
     'import/no-unresolved': 0,
     'prettier/prettier': [

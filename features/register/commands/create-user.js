@@ -1,4 +1,4 @@
-const registerRepo = require('../repository');
+import registerRepo from '../repository';
 
 async function createUser(req, res) {
   let user = {};
@@ -19,4 +19,4 @@ async function createUser(req, res) {
   res.redirect('/register');
 }
 
-module.exports = createUser;
+export default createUser;
