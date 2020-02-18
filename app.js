@@ -18,11 +18,13 @@ const redisStoreConfig = {
 };
 
 if (process.env.REDIS_URL) {
-  redisStoreConfig.url = process.env.REDIS_URL; // this will use the REDIS_URL required for logging into the Redis addon provided by Heroku
+  redisStoreConfig.url = process.env.REDIS_URL;
+  // this will use the REDIS_URL required for logging into the Redis addon provided by Heroku
 }
 
 if (process.env.REDIS_PASSWORD) {
-  redisStoreConfig.password = process.env.REDIS_PASSWORD; // this will use the REDIS_PASSWORD if required
+  redisStoreConfig.password = process.env.REDIS_PASSWORD;
+  // this will use the REDIS_PASSWORD if required
 }
 
 const redisStore = new RedisStore(redisStoreConfig);
